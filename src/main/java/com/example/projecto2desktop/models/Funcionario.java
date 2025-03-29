@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "funcionario")
 public class Funcionario {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_funcionario", nullable = false)
     private Integer id;
 
@@ -18,6 +20,14 @@ public class Funcionario {
 
     @Column(name = "cargo", nullable = false, length = 100)
     private String cargo;
+
+    @Column(name = "email", nullable = false, unique = true, length = 100)
+    private String email;
+
+    @Column(name = "password", nullable = false, length = 255)
+    private String password;
+
+    // Getters e setters
 
     public Integer getId() {
         return id;
@@ -51,4 +61,19 @@ public class Funcionario {
         this.cargo = cargo;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
