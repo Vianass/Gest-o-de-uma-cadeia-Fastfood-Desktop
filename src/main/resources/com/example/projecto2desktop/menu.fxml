@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.projecto2desktop.controllers.MenuController"
+            style="-fx-background-color: #1b323c;"
+            prefHeight="800" prefWidth="1200">
+
+    <stylesheets>
+        <URL value="@/Styles/application.css" />
+    </stylesheets>
+
+    <!-- TÍTULO -->
+    <top>
+        <HBox alignment="CENTER" style="-fx-background-color: #2c4a5a;" prefHeight="60">
+            <Label text="Menu de Administração"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" />
+        </HBox>
+    </top>
+
+    <!-- CENTRO COM OS BOTÕES -->
+    <center>
+        <VBox alignment="CENTER" spacing="30">
+            <FlowPane hgap="20" vgap="20" alignment="CENTER">
+                <Button text="🎁 Gerir Fornecedores"
+                        onAction="#handleFornecedores"
+                        styleClass="card-button"/>
+                <Button text="🛒 Efetuar Encomendas"
+                        onAction="#handleEncomendas"
+                        styleClass="card-button"/>
+                <Button text="📦 Gerir Produtos"
+                        onAction="#handleProdutos"
+                        styleClass="card-button"/>
+                <Button text="🚚 Gerir Distribuição"
+                        onAction="#handleDistribuicao"
+                        styleClass="card-button"/>
+            </FlowPane>
+        </VBox>
+    </center>
+
+    <!-- BOTÃO TERMINAR SESSÃO -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-padding: 20;">
+            <Button text="⏻ Terminar Sessão"
+                    onAction="#handleSair"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;"
+                    prefWidth="160" prefHeight="40"/>
+        </HBox>
+    </bottom>
+</BorderPane>
