@@ -3,8 +3,8 @@ package com.example.projecto2desktop.services;
 import com.example.projecto2desktop.models.Funcionario;
 import com.example.projecto2desktop.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -16,33 +16,33 @@ public class FuncionarioService {
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    // Apenas para autenticação (não é necessário método de registo se não quiseres)
-    public boolean autenticar(String email, String password) {
-        Optional<Funcionario> funcionario = funcionarioRepository.findByEmail(email);
-        return funcionario.isPresent() && encoder.matches(password, funcionario.get().getPassword());
+    /**
+     * Tenta autenticar o funcionário pelo email e password.
+     * Se a password estiver correta, retorna Optional<Funcionario>.
+     * Caso contrário, retorna Optional.empty().
+     */
+    public Optional<Funcionario> autenticar(String email, String password) {
+        Optional<Funcionario> opt = funcionarioRepository.findByEmail(email);
+        if (opt.isPresent()) {
+            Funcionario f = opt.get();
+            if (encoder.matches(password, f.getPassword())) {
+                return Optional.of(f);
+            }
+        }
+        return Optional.empty();
     }
 
-   /* public boolean autenticar(String email, String password) {
-        Optional<Funcionario> funcionario = funcionarioRepository.findByEmail(email);
-
-        if (funcionario.isPresent()) {
-            Funcionario f = funcionario.get();
-            System.out.println("DEBUG -> Email encontrado: " + f.getEmail());
-            System.out.println("DEBUG -> Hash na base de dados: " + f.getPassword());
-            System.out.println("DEBUG -> Password correta? " + encoder.matches(password, f.getPassword()));
-            return encoder.matches(password, f.getPassword());
-        } else {
-            System.out.println("DEBUG -> Email não encontrado!");
-            return false;
-        }
-    }*/
-
-    // Apenas se um dia quiseres guardar/encriptar passwords
+    /**
+     * Regista ou atualiza o funcionário, encriptando a password.
+     */
     public Funcionario guardarFuncionario(Funcionario funcionario) {
         funcionario.setPassword(encoder.encode(funcionario.getPassword()));
         return funcionarioRepository.save(funcionario);
     }
 
+    /**
+     * Busca um funcionário pelo email.
+     */
     public Optional<Funcionario> buscarPorEmail(String email) {
         return funcionarioRepository.findByEmail(email);
     }

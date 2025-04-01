@@ -1,11 +1,14 @@
 package com.example.projecto2desktop;
 
+import com.example.projecto2desktop.models.Funcionario;
 import com.example.projecto2desktop.services.FuncionarioService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import java.util.Optional;
 import java.util.Scanner;
+
+
 
 @SpringBootApplication
 public class Projecto2desktopApplication implements CommandLineRunner {
@@ -32,10 +35,21 @@ public class Projecto2desktopApplication implements CommandLineRunner {
         System.out.print("Password: ");
         String password = scanner.nextLine();
 
-        boolean sucesso = funcionarioService.autenticar(email, password);
+        // Método que retorna Optional<Funcionario>
+        Optional<Funcionario> optFuncionario = funcionarioService.autenticar(email, password);
 
-        if (sucesso) {
+        if (optFuncionario.isPresent()) {
+            Funcionario f = optFuncionario.get();
             System.out.println("Login realizado com sucesso!");
+
+            // Verifica o cargo
+            if ("Gestor".equalsIgnoreCase(f.getCargo())) {
+                System.out.println("Bem-vindo Admin " + f.getNome() + "!");
+                // menu admin
+            } else {
+                System.out.println("Bem-vindo Funcionário " + f.getNome() + "!");
+                // menu normal
+            }
         } else {
             System.out.println("Credenciais inválidas.");
         }
