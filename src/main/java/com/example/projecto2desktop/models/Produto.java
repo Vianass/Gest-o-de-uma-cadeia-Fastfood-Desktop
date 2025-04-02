@@ -1,39 +1,37 @@
 package com.example.projecto2desktop.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import org.hibernate.annotations.ColumnDefault;
-
+import javafx.beans.property.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "produto")
 public class Produto {
+
     @Id
-    @Column(name = "id_produto", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_produto")
     private Integer id;
 
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "descricao", nullable = false, length = Integer.MAX_VALUE)
+    @Column(name = "descricao", nullable = false, columnDefinition = "TEXT")
     private String descricao;
 
-    @Column(name = "preco", nullable = false, precision = 38, scale = 2)
+    @Column(name = "preco", nullable = false)
     private BigDecimal preco;
 
     @Column(name = "categoria", nullable = false, length = 50)
     private String categoria;
 
-    @ColumnDefault("nextval('produto_id_fornecedor_seq')")
     @Column(name = "id_fornecedor", nullable = false)
     private Integer idFornecedor;
 
-    @ColumnDefault("nextval('produto_id_pedido_seq')")
     @Column(name = "id_pedido", nullable = false)
     private Integer idPedido;
+
+    // Getters e setters normais
 
     public Integer getId() {
         return id;
@@ -91,4 +89,33 @@ public class Produto {
         this.idPedido = idPedido;
     }
 
+    // JavaFX properties (não persistem na BD, só para TableView/binding)
+    public StringProperty nomeProperty() {
+        return new SimpleStringProperty(nome);
+    }
+
+    public ObjectProperty<BigDecimal> precoProperty() {
+        return new SimpleObjectProperty<>(preco);
+    }
+
+    public StringProperty descricaoProperty() {
+        return new SimpleStringProperty(descricao);
+    }
+
+    public StringProperty categoriaProperty() {
+        return new SimpleStringProperty(categoria);
+    }
+
+    public IntegerProperty idFornecedorProperty() {
+        return new SimpleIntegerProperty(idFornecedor);
+    }
+
+    public IntegerProperty idPedidoProperty() {
+        return new SimpleIntegerProperty(idPedido);
+    }
+
+    @Override
+    public String toString() {
+        return nome + " (€" + preco + ")";
+    }
 }

@@ -32,7 +32,17 @@
                         onAction="#handleLogin"
                         style="-fx-background-color: #ff6b00; -fx-text-fill: white; -fx-font-weight: bold;"
                         prefWidth="200" />
+
+                <!-- MENSAGEM DE ERRO -->
+                <Label fx:id="loginMessage"
+                       text=""
+                       textFill="red"
+                       style="-fx-font-size: 12px;"
+                       wrapText="true"
+                       maxWidth="200"
+                       alignment="CENTER"/>
             </VBox>
+
 
             <!-- Logotipo -->
             <ImageView fitHeight="250" fitWidth="250" preserveRatio="true">

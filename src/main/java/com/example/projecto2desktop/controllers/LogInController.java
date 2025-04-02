@@ -1,18 +1,17 @@
 package com.example.projecto2desktop.controllers;
 
+import com.example.projecto2desktop.Projecto2desktopApplication;
+import com.example.projecto2desktop.models.Funcionario;
 import com.example.projecto2desktop.services.FuncionarioService;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 public class LogInController {
@@ -31,42 +30,41 @@ public class LogInController {
 
     @FXML
     public void initialize() {
-        campoPassword.setOnAction(event -> handleLogin()); // <--- aqui está a magia
+        campoPassword.setOnAction(event -> {
+            handleLogin();
+        });
     }
 
     @FXML
     private void handleLogin() {
         String email = campoEmail.getText();
-        String password = campoPassword.getText();
+        String senha = campoPassword.getText();
 
-        if (email.isEmpty() || password.isEmpty()) {
-            loginMessage.setText("Por favor, preencha todos os campos.");
-            return;
-        }
+        Optional<Funcionario> optFuncionario = funcionarioService.autenticar(email, senha);
 
-        if (funcionarioService.autenticar(email, password)) {
+        if (optFuncionario.isPresent()) {
+            Funcionario f = optFuncionario.get();
+
+            System.out.println("LOGIN BEM-SUCEDIDO");
+            System.out.println("Email: " + f.getEmail());
+            System.out.println("Cargo: '" + f.getCargo() + "'"); // debug
+
+            String cargo = f.getCargo().trim().toLowerCase();
+
             try {
-                // Carregar a tela de menu
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/projecto2desktop/menu.fxml"));
-                Parent menuView = loader.load();
-
-                // Criar nova cena
-                Scene menuScene = new Scene(menuView);
-
-                // Obter o palco atual
-                Stage stage = (Stage) campoEmail.getScene().getWindow();
-
-                // Definir a nova cena
-                stage.setScene(menuScene);
-                stage.setTitle("Burguo Nervoso - Menu");
-                stage.show();
-                stage.setMaximized(true);
+                if (cargo.contains("gestor")) {
+                    Projecto2desktopApplication.carregarTelaMenu(); // Menu de administração
+                } else {
+                    Projecto2desktopApplication.carregarTelaMenuFuncionario(); // Menu do funcionário
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-                loginMessage.setText("Erro ao carregar o menu.");
             }
+
         } else {
-            loginMessage.setText("Email ou senha incorretos.");
+            loginMessage.setText("Credenciais incorretas.");
+            loginMessage.setStyle("-fx-text-fill: red;");
         }
     }
 }
+

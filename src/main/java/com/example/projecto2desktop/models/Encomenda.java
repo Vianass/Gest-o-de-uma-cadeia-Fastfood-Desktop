@@ -1,30 +1,32 @@
 package com.example.projecto2desktop.models;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "encomenda")
 public class Encomenda {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_encomenda", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_fornecedor", nullable = false)
-    private Fornecedor idFornecedor;
+    private Fornecedor fornecedor;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_armazem", nullable = false)
-    private Armazem idArmazem;
+    private Armazem armazem;
 
     @Column(name = "data_pedido", nullable = false)
     private LocalDate dataPedido;
 
-    @Column(name = "estado", nullable = false, length = Integer.MAX_VALUE)
+    @Column(name = "estado", nullable = false, length = 50)
     private String estado;
 
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -33,20 +35,20 @@ public class Encomenda {
         this.id = id;
     }
 
-    public Fornecedor getIdFornecedor() {
-        return idFornecedor;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setIdFornecedor(Fornecedor idFornecedor) {
-        this.idFornecedor = idFornecedor;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
-    public Armazem getIdArmazem() {
-        return idArmazem;
+    public Armazem getArmazem() {
+        return armazem;
     }
 
-    public void setIdArmazem(Armazem idArmazem) {
-        this.idArmazem = idArmazem;
+    public void setArmazem(Armazem armazem) {
+        this.armazem = armazem;
     }
 
     public LocalDate getDataPedido() {
@@ -65,4 +67,8 @@ public class Encomenda {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "Encomenda #" + id + " - " + fornecedor.getNome();
+    }
 }

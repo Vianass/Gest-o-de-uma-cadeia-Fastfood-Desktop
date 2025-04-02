@@ -22,10 +22,10 @@ public class MenuController {
     @FXML
     private void handleFornecedores() {
         try {
+            System.out.println("Tentando abrir fornecedores...");
             Projecto2desktopApplication.carregarTelaFornecedores();
         } catch (IOException e) {
-            System.err.println("Erro ao carregar fornecedores: " + e.getMessage());
-            // Mostrar alerta de erro
+            e.printStackTrace(); // <- imprime o erro real no terminal
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText(null);
@@ -33,6 +33,7 @@ public class MenuController {
             alert.showAndWait();
         }
     }
+
 
 
     @FXML

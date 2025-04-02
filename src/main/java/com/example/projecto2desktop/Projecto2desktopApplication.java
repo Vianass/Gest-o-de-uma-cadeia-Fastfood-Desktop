@@ -1,5 +1,6 @@
 package com.example.projecto2desktop;
 
+import com.example.projecto2desktop.models.Funcionario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,19 +23,19 @@ public class Projecto2desktopApplication extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         carregarTelaLogin();
 
-        // Reforça o tamanho total logo após show()
+        // Garantir que arranca fullscreen
         primaryStage.setX(0);
         primaryStage.setY(0);
         primaryStage.setWidth(javafx.stage.Screen.getPrimary().getVisualBounds().getWidth());
         primaryStage.setHeight(javafx.stage.Screen.getPrimary().getVisualBounds().getHeight());
         primaryStage.setMaximized(true);
     }
-
 
     public static void carregarTelaLogin() throws IOException {
         FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/login.fxml"));
@@ -49,8 +50,6 @@ public class Projecto2desktopApplication extends Application {
         primaryStage.show();
     }
 
-
-
     public static void carregarTelaMenu() throws IOException {
         FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/menu.fxml"));
         loader.setControllerFactory(springContext::getBean);
@@ -59,10 +58,22 @@ public class Projecto2desktopApplication extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setMinWidth(1024);
         primaryStage.setMinHeight(768);
-
         primaryStage.setTitle("Burguo Nervoso - Menu");
+        primaryStage.setMaximized(true);
         primaryStage.show();
+    }
 
+    public static void carregarTelaMenuFuncionario() throws IOException {
+        FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/menu_funcionario.fxml"));
+        loader.setControllerFactory(springContext::getBean);
+        Parent root = loader.load();
+
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setMinWidth(1024);
+        primaryStage.setMinHeight(768);
+        primaryStage.setTitle("Burguo Nervoso - Funcionário");
+        primaryStage.setMaximized(true);
+        primaryStage.show();
     }
 
     public static void carregarTelaFornecedores() throws IOException {
@@ -74,8 +85,8 @@ public class Projecto2desktopApplication extends Application {
         primaryStage.setMinWidth(1024);
         primaryStage.setMinHeight(768);
         primaryStage.setTitle("Burguo Nervoso - Fornecedores");
-
-        primaryStage.show();               // primeiro mostra
+        primaryStage.setMaximized(true);
+        primaryStage.show();
     }
 
 }

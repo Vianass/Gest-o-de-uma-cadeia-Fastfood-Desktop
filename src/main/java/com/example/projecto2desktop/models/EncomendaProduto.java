@@ -6,16 +6,17 @@ import jakarta.persistence.*;
 @Table(name = "encomenda_produto")
 public class EncomendaProduto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_encomenda_produto", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_encomenda", nullable = false)
-    private Encomenda idEncomenda;
+    private Encomenda encomenda;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_produto", nullable = false)
-    private Produto idProduto;
+    private Produto produto;
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
@@ -28,20 +29,21 @@ public class EncomendaProduto {
         this.id = id;
     }
 
-    public Encomenda getIdEncomenda() {
-        return idEncomenda;
+    public Encomenda getEncomenda() {
+        return encomenda;
     }
 
-    public void setIdEncomenda(Encomenda idEncomenda) {
-        this.idEncomenda = idEncomenda;
+    public void setEncomenda(Encomenda encomenda) {
+        this.encomenda = encomenda;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
+
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     public Integer getQuantidade() {
@@ -52,4 +54,8 @@ public class EncomendaProduto {
         this.quantidade = quantidade;
     }
 
+    // Para exibir nome do produto na TableView
+    public String getNomeProduto() {
+        return produto != null ? produto.getNome() : "";
+    }
 }
