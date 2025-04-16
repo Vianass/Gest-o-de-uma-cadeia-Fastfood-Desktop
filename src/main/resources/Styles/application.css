@@ -123,3 +123,48 @@
 .card-button:hover {
     -fx-background-color: #e65c00;
 }
+
+.welcome-text {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.subtext {
+    -fx-font-size: 14px;
+    -fx-text-fill: #cccccc;
+}
+
+.exit-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 4, 0, 0, 2);
+}
+
+.exit-button:hover {
+    -fx-opacity: 0.85;
+}
+
+.exit-button:pressed {
+    -fx-background-color: #c0392b;
+}
+
+/* Sidebar Botões */
+.side-button {
+    -fx-background-color: #2c4a5a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8;
+    -fx-padding: 12 18;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 2);
+}
+
+.side-button:hover {
+    -fx-background-color: #3a5a6a;
+}

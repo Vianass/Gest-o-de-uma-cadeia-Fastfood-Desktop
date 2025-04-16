@@ -1,6 +1,5 @@
 package com.example.projecto2desktop;
 
-import com.example.projecto2desktop.models.Funcionario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +22,6 @@ public class Projecto2desktopApplication extends Application {
         launch(args);
     }
 
-
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
@@ -38,55 +36,47 @@ public class Projecto2desktopApplication extends Application {
     }
 
     public static void carregarTelaLogin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/login.fxml"));
-        loader.setControllerFactory(springContext::getBean); // <- importante
-
-        Parent root = loader.load();
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setMinWidth(1024);
-        primaryStage.setMinHeight(768);
-        primaryStage.setTitle("Burguo Nervoso - Login");
-        primaryStage.setMaximized(true);
-        primaryStage.show();
+        carregarFXML("login", "Login");
     }
 
     public static void carregarTelaMenu() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/menu.fxml"));
-        loader.setControllerFactory(springContext::getBean);
-        Parent root = loader.load();
-
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setMinWidth(1024);
-        primaryStage.setMinHeight(768);
-        primaryStage.setTitle("Burguo Nervoso - Menu");
-        primaryStage.setMaximized(true);
-        primaryStage.show();
+        carregarFXML("menu", "Menu");
     }
 
     public static void carregarTelaMenuFuncionario() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/menu_funcionario.fxml"));
-        loader.setControllerFactory(springContext::getBean);
-        Parent root = loader.load();
-
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setMinWidth(1024);
-        primaryStage.setMinHeight(768);
-        primaryStage.setTitle("Burguo Nervoso - Funcionário");
-        primaryStage.setMaximized(true);
-        primaryStage.show();
+        carregarFXML("menu_funcionario", "Funcionário");
     }
 
     public static void carregarTelaFornecedores() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/fornecedores.fxml"));
+        carregarFXML("fornecedores", "Fornecedores");
+    }
+
+    public static void carregarTelaEfetuarEncomenda() throws IOException {
+        carregarFXML("encomendas", "Encomendas");
+    }
+
+    public static void carregarTelaArmazens() throws IOException {
+        carregarFXML("armazens", "Armazens");
+    }
+
+    public static void carregarTelaDistribuicao() throws IOException {
+        carregarFXML("distribuicao", "Distribuicao");
+    }
+
+    private static void carregarFXML(String nomeFxml, String tituloJanela) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Projecto2desktopApplication.class.getResource("/com/example/projecto2desktop/" + nomeFxml + ".fxml"));
         loader.setControllerFactory(springContext::getBean);
         Parent root = loader.load();
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setMinWidth(1024);
         primaryStage.setMinHeight(768);
-        primaryStage.setTitle("Burguo Nervoso - Fornecedores");
+        primaryStage.setTitle("Burguo Nervoso - " + tituloJanela);
         primaryStage.setMaximized(true);
         primaryStage.show();
     }
 
+    public static ConfigurableApplicationContext getSpringContext() {
+        return springContext;
+    }
 }

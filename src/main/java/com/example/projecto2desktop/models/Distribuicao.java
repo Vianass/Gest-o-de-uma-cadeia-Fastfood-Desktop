@@ -1,5 +1,6 @@
 package com.example.projecto2desktop.models;
 
+import com.example.projecto2desktop.models.Armazem;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -7,23 +8,23 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "distribuicao")
 public class Distribuicao {
+
     @Id
-    @Column(name = "id_distribuicao", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // <-- Esta linha é ESSENCIAL
+    @Column(name = "id_distribuicao")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "id_armazem", nullable = false)
     private Armazem idArmazem;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_unidade", nullable = false)
-    private Unidade idUnidade;
 
     @Column(name = "data_envio", nullable = false)
     private LocalDate dataEnvio;
 
-    @Column(name = "estado", nullable = false, length = 50)
-    private String estado;
+    // (se ainda tiveres unidade aqui, e não em DistribuicaoIngrediente)
+    @ManyToOne
+    @JoinColumn(name = "id_unidade", nullable = false)
+    private Unidade idUnidade;
 
     public Integer getId() {
         return id;
@@ -56,13 +57,4 @@ public class Distribuicao {
     public void setDataEnvio(LocalDate dataEnvio) {
         this.dataEnvio = dataEnvio;
     }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
 }

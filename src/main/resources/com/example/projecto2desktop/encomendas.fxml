@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.projecto2desktop.controllers.EncomendasController"
+            prefWidth="1280" prefHeight="720"
+            style="-fx-background-color: #1f3b4d;">
+
+    <top>
+        <HBox style="-fx-background-color: #2c3e50;" alignment="CENTER_LEFT" prefHeight="60">
+            <padding><Insets left="20"/></padding>
+            <Label text="Efetuar Encomenda"
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <GridPane hgap="15" vgap="15">
+                <Label text="Fornecedor:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-text-fill: white;"/>
+                <ComboBox fx:id="comboFornecedor" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Armazém:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-text-fill: white;"/>
+                <ComboBox fx:id="comboArmazem" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Ingrediente:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-text-fill: white;"/>
+                <ComboBox fx:id="comboIngrediente" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label text="Quantidade:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-text-fill: white;"/>
+                <TextField fx:id="campoQuantidade" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Button text="➕ Adicionar Ingrediente" onAction="#adicionarIngrediente"
+                        style="-fx-background-color: #ff6600; -fx-text-fill: white; -fx-font-weight: bold;"
+                        GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+            </GridPane>
+
+            <TableView fx:id="tabelaIngredientes" prefHeight="250"
+                       style="-fx-background-color: #2c3e50; -fx-text-fill: white;">
+                <columns>
+                    <TableColumn fx:id="colIngrediente" text="Ingrediente" prefWidth="200"/>
+                    <TableColumn fx:id="colQuantidade" text="Quantidade" prefWidth="100"/>
+                    <TableColumn fx:id="colFornecedor" text="Fornecedor" prefWidth="200"/>
+                    <TableColumn fx:id="colArmazem" text="Armazém" prefWidth="200"/>
+
+                </columns>
+            </TableView>
+
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="✅ Confirmar Encomenda" onAction="#confirmarEncomenda"
+                        style="-fx-background-color: #ff6600; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button text="🔙 Voltar ao Menu" onAction="#voltarMenu"
+                        style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

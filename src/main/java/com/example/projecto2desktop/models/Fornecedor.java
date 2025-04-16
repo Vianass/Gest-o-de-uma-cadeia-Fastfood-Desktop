@@ -21,6 +21,15 @@ public class Fornecedor {
     @Column(name = "avaliacao")
     private Double avaliacao;
 
+    @Override
+    public String toString() {
+        return this.getNome() + " (" + this.getContacto() + ")";
+    }
+
+    private String getContacto() {
+        return contato;
+    }
+
 
     // Construtor padrão (obrigatório para JPA)
     public Fornecedor() {}

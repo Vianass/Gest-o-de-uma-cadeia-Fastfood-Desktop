@@ -1,10 +1,12 @@
 package com.example.projecto2desktop.controllers;
 
+import com.example.projecto2desktop.Projecto2desktopApplication;
 import com.example.projecto2desktop.models.Fornecedor;
 import com.example.projecto2desktop.services.FornecedorService;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -43,22 +45,14 @@ public class FornecedoresController {
         configurarSlider();
         colunaAvaliacao.setSortType(TableColumn.SortType.DESCENDING);
         tableViewFornecedores.getSortOrder().add(colunaAvaliacao);
+        colunaContacto.setCellValueFactory(new PropertyValueFactory<>("contato"));
+
     }
 
     @FXML
-    private void voltarAoMenu() {
+    private void handleSair(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/projecto2desktop/menu.fxml"));
-            Parent menuRoot = loader.load();
-
-            Scene cenaMenu = new Scene(menuRoot);
-
-            // ✅ Corrigir aqui:
-            Stage stage = (Stage) tableViewFornecedores.getScene().getWindow();
-            stage.setScene(cenaMenu);
-            stage.setTitle("Burguo Nervoso - Menu");
-            stage.setMaximized(true);
-
+            Projecto2desktopApplication.carregarTelaLogin();
         } catch (IOException e) {
             e.printStackTrace();
         }

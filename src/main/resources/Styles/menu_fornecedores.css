@@ -1,0 +1,166 @@
+/* ============================
+   Estilos específicos para o menu de Fornecedores
+   ============================ */
+
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #1b323c;
+}
+
+/* ---------- Side Menu ---------- */
+.side-menu {
+    -fx-background-color: #11252c;
+    -fx-padding: 30 0;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+    -fx-pref-width: 250;
+}
+
+.side-button {
+    -fx-background-color: #ff6b00;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.side-button:hover {
+    -fx-background-color: #e65c00;
+}
+
+.exit-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.exit-button:hover {
+    -fx-opacity: 0.85;
+}
+
+.exit-button:pressed {
+    -fx-background-color: #c0392b;
+}
+
+/* ---------- Cabeçalho ---------- */
+.top-bar {
+    -fx-background-color: #2c4a5a;
+    -fx-padding: 10 20;
+}
+
+.title-label {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* ---------- Tabela de Fornecedores ---------- */
+.table-view {
+    -fx-background-color: #2c4a5a;
+    -fx-table-cell-border-color: transparent;
+    -fx-control-inner-background: #2c4a5a;
+    -fx-text-background-color: white;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: #ff6b00;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: #1f3e4d;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* ---------- Formulário ---------- */
+.grid-form {
+    -fx-background-color: #2c4a5a;
+    -fx-background-radius: 8;
+    -fx-padding: 20;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-background-color: #3a5a6a;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aaaaaa;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: transparent;
+}
+
+.text-field:focused {
+    -fx-border-color: #ff6b00;
+}
+
+.slider {
+    -fx-control-inner-background: #3a5a6a;
+    -fx-text-fill: white;
+}
+
+/* ---------- Botões ---------- */
+.button {
+    -fx-background-color: #ff6b00;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 8 14;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-opacity: 0.85;
+}
+
+.button:pressed {
+    -fx-background-color: #e65c00;
+}
+
+.button-blue {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.button-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.button-secondary {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* ---------- Mensagem Rodapé ---------- */
+.status-label {
+    -fx-text-fill: #29cf26;
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-alignment: CENTER;
+}

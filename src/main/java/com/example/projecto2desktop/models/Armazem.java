@@ -15,7 +15,7 @@ public class Armazem {
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "localizacao", nullable = false, length = Integer.MAX_VALUE)
+    @Column(name = "localizacao", nullable = false, length = 100)
     private String localizacao;
 
     public Integer getId() {
@@ -40,6 +40,11 @@ public class Armazem {
 
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
+    }
+
+    @Override
+    public String toString() {
+        return this.getLocalizacao(); // assume que tens um campo `localizacao`
     }
 
 }
