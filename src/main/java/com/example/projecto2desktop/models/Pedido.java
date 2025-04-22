@@ -3,7 +3,9 @@ package com.example.projecto2desktop.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "pedido")
 public class Pedido {
@@ -11,7 +13,7 @@ public class Pedido {
     @Column(name = "id_pedido", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente idCliente;
 

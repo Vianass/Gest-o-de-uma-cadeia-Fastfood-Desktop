@@ -16,12 +16,21 @@ public class MenuFuncionarioController {
 
     @FXML
     private void handleGerirPedidos() {
+        try {
+            Projecto2desktopApplication.carregarTelaGerirPedidos();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("Abrindo gerenciamento de pedidos...");
-        // Aqui podes carregar outro FXML se quiseres
     }
 
     @FXML
     private void handleReceberEncomenda() {
+        try {
+            Projecto2desktopApplication.carregarTelaReceberEncomenda();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("Abrindo recebimento de encomendas...");
         // Aqui podes carregar outro FXML se quiseres
     }

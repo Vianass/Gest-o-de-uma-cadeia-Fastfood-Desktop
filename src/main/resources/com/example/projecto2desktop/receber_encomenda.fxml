@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.projecto2desktop.controllers.ReceberEncomendaController"
+            style="-fx-background-color: #1b323c;">
+
+    <top>
+        <VBox spacing="10">
+            <HBox alignment="CENTER" style="-fx-background-color: #2c4a5a;" prefHeight="60">
+                <Label text="Receção de Encomendas" style="-fx-text-fill: white; -fx-font-size: 18px;" />
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 10 20 0 0;">
+                <Label text="Filtrar:" style="-fx-text-fill: white;" />
+                <ComboBox fx:id="filtroEstadoCombo" prefWidth="150" onAction="#filtrarEncomendas"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Marcar como Recebida" onAction="#handleMarcarRecebida"/>
+                <Button text="Voltar" onAction="#handleVoltar"/>
+            </HBox>
+
+            <TableView fx:id="tabelaEncomendas" VBox.vgrow="ALWAYS" prefHeight="500" style="-fx-background-color: white;">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                    <TableColumn fx:id="colFornecedor" text="Fornecedor" prefWidth="200"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

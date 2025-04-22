@@ -1,17 +1,19 @@
-package com.example.projecto2desktop.models;
+package com.example.projecto2desktop;
 
+import com.example.projecto2desktop.models.Armazem;
+import com.example.projecto2desktop.models.Produto;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "distribuicao_produto")
-public class DistribuicaoProduto {
+@Table(name = "armazem_produto")
+public class ArmazemProduto {
     @Id
-    @Column(name = "id_distribuicao_produto", nullable = false)
+    @Column(name = "id_armazem_produto", nullable = false)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_distribuicao", nullable = false)
-    private Distribuicao idDistribuicao;
+    @JoinColumn(name = "id_armazem", nullable = false)
+    private Armazem idArmazem;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_produto", nullable = false)
@@ -28,12 +30,12 @@ public class DistribuicaoProduto {
         this.id = id;
     }
 
-    public Distribuicao getIdDistribuicao() {
-        return idDistribuicao;
+    public Armazem getIdArmazem() {
+        return idArmazem;
     }
 
-    public void setIdDistribuicao(Distribuicao idDistribuicao) {
-        this.idDistribuicao = idDistribuicao;
+    public void setIdArmazem(Armazem idArmazem) {
+        this.idArmazem = idArmazem;
     }
 
     public Produto getIdProduto() {
